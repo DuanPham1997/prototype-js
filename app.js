@@ -99,3 +99,37 @@ const jay = Object.create(StudentProto);
 jay.init('jay',2000,'Computer Science');
 console.log(jay);
 jay.caclAge();
+//**************** */
+class Account {
+    constructor(owner,curency,pin){
+    this.owner = owner;
+    this.curency = curency;
+    this.pin = pin;
+    this.movement = [];
+    this.locale = navigator.language;
+    console.log(`Thank for opening ${owner}`);
+    }
+    deposit(val){
+  this.movement.push(val);
+    }
+
+    withDraw(val){
+        this.deposit(-val);
+    }
+    approveLoan(val){
+        return true;
+    }
+
+    requestLoan(val){
+        if(this.approveLoan(val)){
+         this.deposit(val);
+         console.log('Loan approved!');
+        }
+    }
+}
+
+const acc1 = new Account('Duan','USD',1111);
+
+acc1.deposit(1000);
+acc1.withDraw(500);
+console.log(acc1)
