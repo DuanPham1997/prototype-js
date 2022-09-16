@@ -120,6 +120,7 @@ class Account {
     }
     deposit(val){
   this.#movement.push(val);
+  return this;
     }
 
     withDraw(val){
@@ -135,6 +136,7 @@ class Account {
          this.deposit(val);
          console.log('Loan approved!');
         }
+        return this;
     }
     //static method 
     static helper(){
@@ -148,3 +150,8 @@ acc1.deposit(1000);
 acc1.withDraw(500);
 console.log(acc1)
 Account.helper();
+
+//chain 
+
+acc1.deposit(300).deposit(1000).requestLoan(2000).withDraw(1500);
+console.log(acc1.getMovement());
