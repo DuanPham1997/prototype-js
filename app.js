@@ -33,3 +33,47 @@ tesla.chargeBattery(90);
 console.log(tesla);
 tesla.brake();
 tesla.accelerate();
+
+//class extends 
+
+class Person {
+    constructor(fullName,birthYear){
+       this.fullName = fullName;
+       this.birthYear = birthYear;
+    }
+
+    caclAge(){
+        console.log(2022 - this.birthYear);
+    }
+
+    greet(){
+        console.log(`Hello ${this.fullName}`);
+    }
+    get age(){
+        return 2022 - this.birthYear;
+    }
+
+    set fullname(name){
+        if(this.fullname.includes(' ')) return this._fullname = name;
+        else alert(`${name} is not fullname`);
+    }
+
+    get fullname(){
+        return this._fullname;
+    }
+}
+
+class StudentCl extends Person {
+    constructor(fullName,birthYear,course){
+        //always need to happen first
+      super(fullName,birthYear);
+      this.course = course;
+    }
+    introduce(){
+        console.log(`I am ${this.fullName} and I study ${this.course}`);
+    }
+}
+
+const student1 = new StudentCl('Duan',1997,'JS');
+
+student1.introduce();
