@@ -101,30 +101,44 @@ console.log(jay);
 jay.caclAge();
 //**************** */
 class Account {
+    //public fields
+    locale = navigator.language;
+    //private fields
+    #movement = [];
+    #pin;
     constructor(owner,curency,pin){
     this.owner = owner;
     this.curency = curency;
-    this.pin = pin;
-    this.movement = [];
-    this.locale = navigator.language;
+    this.#pin = pin;
+  
+   
+   
     console.log(`Thank for opening ${owner}`);
     }
+    getMovement(){
+        return this.#movement;  
+    }
     deposit(val){
-  this.movement.push(val);
+  this.#movement.push(val);
     }
 
     withDraw(val){
         this.deposit(-val);
     }
-    approveLoan(val){
+    //protected method
+    _approveLoan(val){
         return true;
     }
 
     requestLoan(val){
-        if(this.approveLoan(val)){
+        if(this._approveLoan(val)){
          this.deposit(val);
          console.log('Loan approved!');
         }
+    }
+    //static method 
+    static helper(){
+        console.log('This is static method');
     }
 }
 
@@ -133,3 +147,4 @@ const acc1 = new Account('Duan','USD',1111);
 acc1.deposit(1000);
 acc1.withDraw(500);
 console.log(acc1)
+Account.helper();
