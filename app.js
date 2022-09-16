@@ -77,3 +77,25 @@ class StudentCl extends Person {
 const student1 = new StudentCl('Duan',1997,'JS');
 
 student1.introduce();
+//inheritane beeween class : Object.create
+const PersonProto =  {
+    caclAge(){
+        console.log(2022 - this.birthYear)
+    },
+    init(firstName,birthYear){
+      this.firstName = firstName;
+      this.birthYear = birthYear;
+    }
+}
+const steven = Object.create(PersonProto);
+const StudentProto = Object.create(PersonProto);
+
+StudentProto.init  = function(firstName,birthYear,course){
+  PersonProto.init.call(this,firstName,birthYear);
+  this.course = course;
+}
+
+const jay = Object.create(StudentProto);
+jay.init('jay',2000,'Computer Science');
+console.log(jay);
+jay.caclAge();
